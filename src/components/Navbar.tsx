@@ -10,8 +10,6 @@ import {
   X,
   GraduationCap,
   Sparkles,
-  Globe,
-  Share2,
 } from 'lucide-react';
 import { AppSettings } from '../types';
 
@@ -19,7 +17,6 @@ interface NavbarProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   settings: AppSettings;
-  onOpenShareModal?: () => void;
   repoCount?: number;
 }
 
@@ -27,7 +24,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   activeTab,
   setActiveTab,
   settings,
-  onOpenShareModal,
   repoCount = 0,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -37,7 +33,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'lesson', label: 'Soạn giáo án', icon: BookOpen, badge: 'CV 5512' },
     { id: 'slide', label: 'Tạo slide', icon: Presentation, badge: '16:9' },
     { id: 'exam', label: 'Tạo đề kiểm tra', icon: FileSpreadsheet, badge: 'CV 7991' },
-    { id: 'repository', label: 'Kho tài liệu', icon: FolderOpen },
+    { id: 'repository', label: 'Kho tài liệu', icon: FolderOpen, count: repoCount },
     { id: 'settings', label: 'Cài đặt', icon: Settings },
   ];
 
@@ -47,7 +43,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center justify-between h-16">
           {/* Logo & App Brand */}
           <div
-            onClick={() => setActiveTab('home')}
+            onClick={() => setActiveTab('lesson')}
             className="flex items-center gap-3 cursor-pointer group"
           >
             {settings.logoUrl ? (
@@ -112,23 +108,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             })}
           </nav>
 
-          {/* Public Share & Teacher Profile Widget */}
+          {/* Teacher Profile Widget */}
           <div className="flex items-center gap-2 pl-3 border-l border-slate-200">
-            {onOpenShareModal && (
-              <button
-                onClick={onOpenShareModal}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white text-xs font-bold shadow-sm shadow-teal-500/20 active:scale-95 transition-all"
-                title="Chia sẻ & Xuất bản liên kết công khai"
-              >
-                <Globe className="w-3.5 h-3.5" />
-                <span className="hidden md:inline">Chia sẻ công khai</span>
-                <span className="md:hidden">Chia sẻ</span>
-              </button>
-            )}
-
             <button
               onClick={() => setActiveTab('settings')}
-              className="hidden sm:flex items-center gap-2.5 p-1.5 rounded-xl hover:bg-slate-100 transition-colors text-left group"
+              className="flex items-center gap-2.5 p-1.5 rounded-xl hover:bg-slate-100 transition-colors text-left group"
               title="Cài đặt thông tin giáo viên"
             >
               {settings.avatarUrl ? (
@@ -141,15 +125,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <div className="w-9 h-9 rounded-full bg-blue-100 text-blue-700 font-bold text-sm flex items-center justify-center ring-2 ring-blue-500/20 group-hover:ring-blue-600">
                   {settings.teacherName
                     ? settings.teacherName.split(' ').slice(-1)[0][0]
-                    : 'GV'}
+                    : 'N'}
                 </div>
               )}
-              <div className="hidden xl:block">
+              <div className="hidden sm:block">
                 <div className="text-xs font-bold text-slate-800 leading-tight group-hover:text-blue-600">
-                  {settings.teacherName || 'Giáo viên'}
+                  {settings.teacherName || 'Trần Thị Tuyết Nga'}
                 </div>
-                <div className="text-[11px] text-slate-500 truncate max-w-[140px]">
-                  {settings.schoolName || 'Kết nối tri thức'}
+                <div className="text-[11px] text-slate-500 truncate max-w-[170px]">
+                  {settings.schoolName || 'THPT Dương Quang Đông'}
                 </div>
               </div>
             </button>
@@ -171,22 +155,6 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-4 space-y-1 shadow-lg animate-fadeIn">
-          {onOpenShareModal && (
-            <button
-              onClick={() => {
-                onOpenShareModal();
-                setMobileMenuOpen(false);
-              }}
-              className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-bold bg-gradient-to-r from-teal-500 to-blue-600 text-white shadow-sm mb-2"
-            >
-              <div className="flex items-center gap-3">
-                <Globe className="w-5 h-5" />
-                <span>Chia sẻ & Xuất bản liên kết công khai</span>
-              </div>
-              <Share2 className="w-4 h-4 text-white/80" />
-            </button>
-          )}
-
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;

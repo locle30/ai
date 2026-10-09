@@ -130,7 +130,7 @@ export const LessonPlanView: React.FC<LessonPlanViewProps> = ({
       try {
         generatedData = JSON.parse(rawText);
       } catch {
-        throw new Error('Máy chủ phản hồi không đúng định dạng JSON (có thể do quá tải đường truyền). Vui lòng thử lại hoặc bấm "Nạp bài mẫu KHTN 10"!');
+        throw new Error('Máy chủ phản hồi không đúng định dạng JSON (có thể do quá tải đường truyền). Vui lòng thử lại hoặc bấm "Nạp bài mẫu Lịch sử 10"!');
       }
 
       if (!response.ok || generatedData?.error) {
@@ -274,10 +274,10 @@ d) Tổ chức thực hiện:
           <button
             onClick={handleLoadSample}
             className="btn-3d-teal px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5"
-            title="Nạp dữ liệu kiểm thử thực nghiệm môn KHTN Lớp 10"
+            title="Nạp bài mẫu chuẩn môn Lịch sử Lớp 10 (Trường THPT Dương Quang Đông)"
           >
             <Zap className="w-4 h-4" />
-            Nạp bài mẫu KHTN 10
+            Nạp bài mẫu Lịch sử 10
           </button>
           <button
             onClick={handleExportDocx}

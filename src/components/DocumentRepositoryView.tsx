@@ -43,7 +43,6 @@ interface DocumentRepositoryViewProps {
   onOpenLesson: (lesson: LessonPlan) => void;
   onOpenSlide: (slides: SlidePresentation) => void;
   onOpenExam: (exam: ExamDocument) => void;
-  onOpenShareModal?: () => void;
 }
 
 export const DocumentRepositoryView: React.FC<DocumentRepositoryViewProps> = ({
@@ -53,7 +52,6 @@ export const DocumentRepositoryView: React.FC<DocumentRepositoryViewProps> = ({
   onOpenLesson,
   onOpenSlide,
   onOpenExam,
-  onOpenShareModal,
 }) => {
   const [filterType, setFilterType] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -255,17 +253,7 @@ export const DocumentRepositoryView: React.FC<DocumentRepositoryViewProps> = ({
     saveWholeRepository(seed);
     setRepository(seed);
     setSelectedIds([]);
-    showToast('Đã nạp lại 3 tài liệu mẫu chuẩn KHTN Lớp 10!');
-  };
-
-  const handleShareItem = (item: RepositoryItem, e: React.MouseEvent) => {
-    e.stopPropagation();
-    let param = 'exam';
-    if (item.type === 'lesson') param = 'lesson';
-    else if (item.type === 'slide') param = 'slide';
-    const url = `${window.location.origin}/?${param}=${encodeURIComponent(item.id)}`;
-    navigator.clipboard.writeText(url);
-    showToast(`Đã sao chép liên kết chia sẻ cho "${item.title}"!`);
+    showToast('Đã nạp lại 3 tài liệu mẫu chuẩn Lịch sử Lớp 10!');
   };
 
   return (
@@ -321,24 +309,11 @@ export const DocumentRepositoryView: React.FC<DocumentRepositoryViewProps> = ({
             type="button"
             onClick={handleResetSampleRepo}
             className="btn-3d-blue px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5"
-            title="Khôi phục lại bài mẫu KHTN 10 nếu cần"
+            title="Khôi phục lại bài mẫu Lịch sử 10 nếu cần"
           >
             <Zap className="w-4 h-4" />
-            Nạp mẫu KHTN 10
+            Nạp mẫu Lịch sử 10
           </button>
-
-          {/* Button: Chia sẻ kho tài liệu */}
-          {onOpenShareModal && (
-            <button
-              type="button"
-              onClick={onOpenShareModal}
-              className="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5 bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white shadow-sm transition-all"
-              title="Xuất bản kho tài liệu này lên liên kết công khai"
-            >
-              <Globe className="w-4 h-4" />
-              <span>Chia sẻ kho tài liệu</span>
-            </button>
-          )}
         </div>
       </div>
 
@@ -518,17 +493,6 @@ export const DocumentRepositoryView: React.FC<DocumentRepositoryViewProps> = ({
                   </span>
 
                   <div className="flex items-center gap-1.5">
-                    {/* Share Direct Link Button */}
-                    <button
-                      type="button"
-                      onClick={(e) => handleShareItem(item, e)}
-                      className="px-2.5 py-1.5 rounded-xl border border-teal-200 bg-teal-50 text-teal-700 hover:bg-teal-600 hover:text-white transition-colors text-xs font-bold flex items-center gap-1"
-                      title="Sao chép liên kết mở trực tiếp tài liệu này"
-                    >
-                      <Share2 className="w-3.5 h-3.5" />
-                      <span className="hidden sm:inline">Chia sẻ</span>
-                    </button>
-
                     {/* Download Button */}
                     <button
                       type="button"

@@ -22,13 +22,11 @@ import { defaultSettings } from '../utils/storage';
 interface SettingsViewProps {
   settings: AppSettings;
   setSettings: (settings: AppSettings) => void;
-  onOpenShareModal?: () => void;
 }
 
 export const SettingsView: React.FC<SettingsViewProps> = ({
   settings,
   setSettings,
-  onOpenShareModal,
 }) => {
   const [form, setForm] = useState<AppSettings>(settings);
   const [savedSuccess, setSavedSuccess] = useState(false);
@@ -406,31 +404,6 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           </div>
         </div>
 
-        {/* Card: Public Share & Cloud Persistence */}
-        <div className="bg-gradient-to-r from-teal-50 via-blue-50 to-white rounded-2xl border border-teal-200/80 p-6 shadow-sm space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div>
-              <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
-                <Globe className="w-5 h-5 text-teal-600" />
-                Xuất Bản & Chia Sẻ Trợ Lý Công Khai
-              </h2>
-              <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                Khi bạn chia sẻ link công khai cho đồng nghiệp hoặc học sinh, hệ thống sẽ tự động đồng bộ hóa thông tin giáo viên, logo trường và toàn bộ bộ đề kiểm tra, giáo án bạn đã tạo để người mở xem được ngay!
-              </p>
-            </div>
-
-            {onOpenShareModal && (
-              <button
-                type="button"
-                onClick={onOpenShareModal}
-                className="btn-3d-teal px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 flex-shrink-0"
-              >
-                <Share2 className="w-4 h-4" />
-                Mở bảng chia sẻ
-              </button>
-            )}
-          </div>
-        </div>
 
         {/* Action Save Buttons */}
         <div className="flex items-center justify-between pt-2">

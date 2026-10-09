@@ -29,7 +29,6 @@ interface ExamGeneratorViewProps {
   setCurrentExam: (exam: ExamDocument) => void;
   settings: AppSettings;
   onSaveToRepo?: (exam: ExamDocument) => void;
-  onOpenShareModal?: () => void;
 }
 
 /**
@@ -250,19 +249,7 @@ export const ExamGeneratorView: React.FC<ExamGeneratorViewProps> = ({
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [copiedAnswers, setCopiedAnswers] = useState(false);
-  const [copiedExamLink, setCopiedExamLink] = useState(false);
   const [showInlineAnswers, setShowInlineAnswers] = useState<boolean>(true);
-
-  // Direct Exam Sharing Handler
-  const handleShareExamDirect = () => {
-    const url = `${window.location.origin}/?exam=${encodeURIComponent(safeExam.id)}`;
-    navigator.clipboard.writeText(url);
-    setCopiedExamLink(true);
-    setTimeout(() => setCopiedExamLink(false), 2500);
-    if (onSaveToRepo) {
-      onSaveToRepo(safeExam);
-    }
-  };
 
   // Lists
   const thcsSubjects = ['Khoa học tự nhiên', 'Toán học', 'Ngữ văn', 'Lịch sử và Địa lí', 'Tin học', 'Tiếng Anh'];
@@ -786,19 +773,6 @@ ${(safeExam.examPaper.part4.questions ?? [])
             </div>
 
             <div className="flex items-center gap-2">
-              {/* Share Exam Direct Link */}
-              <button
-                onClick={handleShareExamDirect}
-                className="px-3 py-1.5 rounded-lg text-xs font-bold border border-teal-200 bg-teal-50 text-teal-800 hover:bg-teal-100 flex items-center gap-1 shadow-sm transition-colors"
-                title="Sao chép đường link mở trực tiếp bộ đề kiểm tra này"
-              >
-                {copiedExamLink ? (
-                  <Check className="w-3.5 h-3.5 text-teal-700" />
-                ) : (
-                  <Share2 className="w-3.5 h-3.5 text-teal-600" />
-                )}
-                <span>{copiedExamLink ? 'Đã chép link đề!' : 'Chia sẻ bộ đề'}</span>
-              </button>
 
               <button
                 onClick={handleCopyPaper}

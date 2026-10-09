@@ -4,30 +4,24 @@ import {
   Presentation,
   FileSpreadsheet,
   CheckCircle2,
-  FileText,
   Sparkles,
   ArrowRight,
   ShieldCheck,
   Zap,
-  Bookmark,
   Award,
-  Globe,
-  Share2,
 } from 'lucide-react';
 import { AppSettings } from '../types';
 
 interface HomeDashboardProps {
   setActiveTab: (tab: string) => void;
   settings: AppSettings;
-  onLoadSampleKHTN10: () => void;
-  onOpenShareModal?: () => void;
+  onLoadSampleHistory10: () => void;
 }
 
 export const HomeDashboard: React.FC<HomeDashboardProps> = ({
   setActiveTab,
   settings,
-  onLoadSampleKHTN10,
-  onOpenShareModal,
+  onLoadSampleHistory10,
 }) => {
   return (
     <div className="space-y-8 pb-12 animate-fadeIn">
@@ -39,16 +33,15 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
         <div className="relative z-10 max-w-3xl">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/15 backdrop-blur-md text-xs font-semibold mb-4 border border-white/20">
             <Sparkles className="w-4 h-4 text-teal-300" />
-            <span>Chương trình Giáo dục phổ thông 2018 • Bộ sách Kết nối tri thức</span>
+            <span>Chương trình Giáo dục phổ thông 2018 • Bộ sách Kết nối tri thức với cuộc sống</span>
           </div>
 
           <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight sm:leading-snug">
             Trợ Lý AI Dành Cho Giáo Viên THCS & THPT
           </h1>
           <p className="mt-3 text-sm sm:text-base text-blue-50 leading-relaxed max-w-2xl">
-            Tự động hóa toàn diện quy trình sư phạm: Soạn kế hoạch bài dạy chuẩn khung Công văn 5512,
-            thiết kế slide PowerPoint 16:9 tinh gọn, lập ma trận, bản đặc tả và đề kiểm tra định kì
-            chuẩn xác theo <strong>Công văn 7991/BGDĐT-GDTrH ngày 17/12/2024</strong>.
+            Không gian sư phạm cá nhân của <strong>Cô {settings.teacherName || 'Trần Thị Tuyết Nga'}</strong> ({settings.schoolName || 'Trường THPT Dương Quang Đông'} - {settings.department || 'Tổ Khoa học Xã hội'}).
+            Hỗ trợ soạn kế hoạch bài dạy chuẩn khung <strong>Công văn 5512/BGDĐT-GDTrH</strong>, thiết kế slide trình chiếu 16:9 và lập ma trận - đặc tả - đề kiểm tra chuẩn <strong>Công văn 7991/BGDĐT-GDTrH</strong>.
           </p>
 
           <div className="mt-6 flex flex-wrap gap-3">
@@ -61,21 +54,12 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
               <ArrowRight className="w-4 h-4 ml-1" />
             </button>
             <button
-              onClick={onLoadSampleKHTN10}
+              onClick={onLoadSampleHistory10}
               className="btn-3d-teal flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm"
             >
               <Zap className="w-4 h-4" />
-              Kiểm thử bài mẫu: KHTN Lớp 10
+              Mở bài mẫu: Lịch sử Lớp 10
             </button>
-            {onOpenShareModal && (
-              <button
-                onClick={onOpenShareModal}
-                className="flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm bg-white/15 hover:bg-white/25 border border-white/30 text-white backdrop-blur-md transition-all active:scale-95 shadow-sm"
-              >
-                <Globe className="w-4 h-4 text-teal-300" />
-                Chia sẻ trợ lý công khai
-              </button>
-            )}
           </div>
         </div>
       </div>
@@ -89,25 +73,25 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
           <div>
             <div className="flex items-center gap-2">
               <h3 className="font-bold text-slate-900 text-base">
-                Dữ liệu kiểm thử thực nghiệm: Môn Khoa học tự nhiên Lớp 10
+                Giáo án & Tài liệu mẫu: Môn Lịch sử Lớp 10 (Chuẩn GDPT 2018)
               </h3>
               <span className="px-2 py-0.5 rounded-full bg-teal-200 text-teal-800 font-bold text-[11px]">
                 Sẵn sàng 100%
               </span>
             </div>
             <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-              Trọn bộ dữ liệu chuẩn mực cho bài <em>"Các cấp độ tổ chức của thế giới sống"</em> (SGK Kết nối tri thức):
-              Giáo án 5512 đầy đủ 4 hoạt động, bộ 8 slide trình chiếu 16:9, ma trận - đặc tả - đề thi định kì theo Công văn 7991 với đáp án và barem chấm điểm chi tiết.
+              Trọn bộ tài liệu sư phạm cho bài <em>"Hiện thực lịch sử và nhận thức lịch sử"</em> (SGK Lịch sử 10 Kết nối tri thức) biên soạn cho <strong>Trường THPT Dương Quang Đông, tỉnh Vĩnh Long</strong>:
+              Giáo án CV 5512 đầy đủ 4 hoạt động sư phạm, bộ 8 slide trình chiếu 16:9, ma trận - đặc tả - đề thi định kì theo Công văn 7991 có đáp án và barem chấm điểm chi tiết.
             </p>
           </div>
         </div>
         <div className="flex items-center gap-2 w-full md:w-auto">
           <button
-            onClick={onLoadSampleKHTN10}
+            onClick={onLoadSampleHistory10}
             className="w-full md:w-auto btn-3d-teal px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2"
           >
             <Zap className="w-4 h-4" />
-            Nạp dữ liệu kiểm thử
+            Nạp bài mẫu Lịch sử 10
           </button>
         </div>
       </div>
@@ -164,28 +148,28 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
             </div>
             <div className="flex items-center gap-2 mb-2">
               <span className="text-[11px] font-bold uppercase tracking-wider text-teal-600 bg-teal-50 px-2 py-0.5 rounded-full">
-                PowerPoint 16:9
+                Tỷ lệ 16:9
               </span>
-              <span className="text-xs text-slate-400">• Ít chữ, trực quan</span>
+              <span className="text-xs text-slate-400">• PowerPoint</span>
             </div>
             <h3 className="text-lg font-bold text-slate-900 mb-2">
               Thiết Kế Slide Trình Chiếu
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-              Tạo bài giảng điện tử trực tiếp từ giáo án; bố cục chuẩn sư phạm gồm tiêu đề, mục tiêu, khởi động, hình thành kiến thức, luyện tập và dặn dò.
+              Biến kế hoạch bài dạy thành bài trình chiếu 16:9 chuyên nghiệp. Ít chữ (4-6 ý/slide), có gợi ý hình ảnh trực quan và ghi chú hướng dẫn giảng dạy.
             </p>
             <ul className="space-y-2 text-xs text-slate-600 mb-6">
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-teal-600 flex-shrink-0" />
-                <span>Tùy chọn số lượng slide & tỷ lệ 16:9</span>
+                <span>Cấu trúc bài dạy 7-8 slide chuẩn</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-teal-600 flex-shrink-0" />
-                <span>Gợi ý hình ảnh minh họa cho từng trang</span>
+                <span>Gợi ý hình ảnh minh họa chi tiết</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-teal-600 flex-shrink-0" />
-                <span>Xem trước tương tác & xuất file PPTX</span>
+                <span>Xuất file PPTX tương thích Microsoft Office</span>
               </li>
             </ul>
           </div>
@@ -193,7 +177,7 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
             onClick={() => setActiveTab('slide')}
             className="w-full btn-3d-teal py-2.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2"
           >
-            <span>Thiết kế Slide</span>
+            <span>Thiết kế slide</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
@@ -208,32 +192,32 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
               <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full">
                 Công văn 7991
               </span>
-              <span className="text-xs text-slate-400">• Áp dụng HK2 24-25</span>
+              <span className="text-xs text-slate-400">• 17/12/2024</span>
             </div>
             <h3 className="text-lg font-bold text-slate-900 mb-2">
-              Ma Trận, Đặc Tả & Đề Thi
+              Tạo Đề Kiểm Tra Định Kì
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-              Lập ma trận và bản đặc tả theo mẫu Phụ lục 1 & 2; tạo đề 4 dạng thức (Nhiều lựa chọn, Đúng-Sai 4 ý, Trả lời ngắn, Tự luận) cùng đáp án và barem chấm điểm chi tiết.
+              Tạo đồng bộ Ma trận (Phụ lục 1), Bản đặc tả (Phụ lục 2), Đề kiểm tra 4 phần định dạng mới và Hướng dẫn chấm điểm chi tiết chuẩn Công văn 7991.
             </p>
             <ul className="space-y-2 text-xs text-slate-600 mb-6">
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-teal-600 flex-shrink-0" />
-                <span>Tỉ lệ Biết - Hiểu - Vận dụng chuẩn xác</span>
+                <span>Ma trận chuẩn tỉ lệ Biết - Hiểu - Vận dụng</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-teal-600 flex-shrink-0" />
-                <span>Kiểm tra tính nhất quán & tổng 10 điểm</span>
+                <span>Đề thi 4 phần: MCQ, Đúng/Sai, Điền ngắn, Tự luận</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-teal-600 flex-shrink-0" />
-                <span>Xuất trọn bộ tài liệu ra file DOCX</span>
+                <span>Barem chấm điểm 10.0 điểm chuẩn mực</span>
               </li>
             </ul>
           </div>
           <button
             onClick={() => setActiveTab('exam')}
-            className="w-full btn-3d-blue py-2.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2"
+            className="w-full py-2.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white shadow-md shadow-indigo-600/20 active:scale-98 transition-all"
           >
             <span>Tạo đề kiểm tra</span>
             <ArrowRight className="w-4 h-4" />
@@ -241,36 +225,18 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
         </div>
       </div>
 
-      {/* Compliance Information Section */}
-      <div className="rounded-2xl bg-slate-900 text-white p-6 sm:p-8">
-        <div className="flex items-center gap-2 text-teal-400 text-xs font-bold uppercase tracking-wider mb-2">
-          <ShieldCheck className="w-4 h-4" />
-          Quy chuẩn chuyên môn Bộ Giáo Dục và Đào Tạo
+      {/* Compliance Notice Footer Banner */}
+      <div className="rounded-2xl border border-slate-200 bg-white p-5 flex items-center gap-4 text-xs text-slate-600 shadow-sm">
+        <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-500 flex-shrink-0">
+          <ShieldCheck className="w-5 h-5 text-teal-600" />
         </div>
-        <h2 className="text-xl sm:text-2xl font-bold tracking-tight mb-4">
-          Bám sát tuyệt đối các văn bản chỉ đạo hiện hành
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-          <div className="bg-slate-800/80 rounded-xl p-4 border border-slate-700">
-            <div className="flex items-center gap-2 text-blue-400 font-bold text-sm mb-2">
-              <Bookmark className="w-4 h-4" />
-              Công văn số 5512/BGDĐT-GDTrH (18/12/2020)
-            </div>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Quy định khung kế hoạch bài dạy của giáo viên tại Phụ lục IV: Cấu trúc 3 phần bắt buộc (Mục tiêu, Thiết bị - học liệu, Tiến trình dạy học với 4 hoạt động sư phạm, mỗi hoạt động theo quy trình 4 bước chặt chẽ).
-            </p>
-          </div>
-
-          <div className="bg-slate-800/80 rounded-xl p-4 border border-slate-700">
-            <div className="flex items-center gap-2 text-teal-400 font-bold text-sm mb-2">
-              <Bookmark className="w-4 h-4" />
-              Công văn số 7991/BGDĐT-GDTrH (17/12/2024)
-            </div>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Hướng dẫn thực hiện kiểm tra đánh giá định kì từ học kì 2 năm học 2024-2025: Ma trận (Phụ lục 1), Bản đặc tả (Phụ lục 2), cấu trúc đề thi mới gồm TN nhiều lựa chọn (khoảng 3đ), TN Đúng-Sai (khoảng 2-3đ), Trả lời ngắn (khoảng 2đ) và Tự luận (khoảng 3đ).
-            </p>
-          </div>
+        <div>
+          <h4 className="font-bold text-slate-800 text-sm">
+            Bảo đảm pháp lý sư phạm & Bảo mật dữ liệu cá nhân
+          </h4>
+          <p className="mt-0.5 text-slate-500 leading-relaxed">
+            Hệ thống tuân thủ nghiêm ngặt khung phân phối chương trình GDPT 2018 và quy chuẩn văn bản của Bộ GD&ĐT Việt Nam. Toàn bộ tài liệu được lưu trữ trực tiếp và an toàn trên thiết bị của thầy cô.
+          </p>
         </div>
       </div>
     </div>

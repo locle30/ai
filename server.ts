@@ -257,16 +257,16 @@ async function callGeminiWithResilience(
 function buildStandardLessonPlanFallback(params: any) {
   const {
     schoolLevel = 'THPT',
-    subject = 'Khoa học tự nhiên',
+    subject = 'Lịch sử',
     grade = 'Lớp 10',
     textbook = 'Kết nối tri thức',
-    lessonName = 'Bài học',
-    topic = 'Chủ đề môn học',
+    lessonName = 'Hiện thực lịch sử và nhận thức lịch sử',
+    topic = 'Lịch sử và Sử học',
     duration = '2 tiết (90 phút)',
     objectives = '',
     contentOutline = '',
-    teacherName = 'Giáo viên bộ môn',
-    schoolName = 'Trường THCS/THPT',
+    teacherName = 'Trần Thị Tuyết Nga',
+    schoolName = 'Trường THPT Dương Quang Đông',
   } = params;
 
   return {
@@ -387,9 +387,9 @@ function buildStandardLessonPlanFallback(params: any) {
  */
 function buildStandardSlidesFallback(params: any) {
   const {
-    subject = 'Khoa học tự nhiên',
+    subject = 'Lịch sử',
     grade = 'Lớp 10',
-    lessonName = 'Bài học',
+    lessonName = 'Hiện thực lịch sử và nhận thức lịch sử',
     slideCount = 8,
     aspectRatio = '16:9',
   } = params;
@@ -401,9 +401,9 @@ function buildStandardSlidesFallback(params: any) {
       title: `${lessonName.toUpperCase()}`,
       subtitle: `Môn ${subject} - ${grade} - Bộ sách Kết nối tri thức với cuộc sống`,
       bullets: [
-        `Giáo viên giảng dạy: Giáo viên bộ môn`,
-        `Tổ chuyên môn: Khoa học tự nhiên`,
-        `Trường: THCS & THPT`,
+        `Giáo viên giảng dạy: Trần Thị Tuyết Nga`,
+        `Tổ chuyên môn: Tổ Khoa học Xã hội`,
+        `Trường: Trường THPT Dương Quang Đông`,
       ],
       imageSuggestion: `Hình ảnh minh họa trực quan chủ đề ${lessonName} sắc nét, truyền cảm hứng`,
       notes: `Lời giáo viên: Chào các em, hôm nay chúng ta cùng bắt đầu bài học mới với những kiến thức bổ ích!`,
@@ -746,10 +746,10 @@ TRẢ VỀ JSON HỢP LỆ VỚI SCHEMA:
 function buildStandardExamFallback(params: any) {
   const {
     schoolLevel = 'THPT',
-    subject = 'Khoa học tự nhiên',
+    subject = 'Lịch sử',
     grade = 'Lớp 10',
     duration = '45 phút',
-    scope = 'Chủ đề bài học',
+    scope = 'Chủ đề 1: Lịch sử và Sử học',
     cognitiveRatio = { know: 40, understand: 30, apply: 30 },
   } = params;
 
@@ -763,8 +763,8 @@ function buildStandardExamFallback(params: any) {
       scope,
       totalScore: 10.0,
       ratio: `Biết ${cognitiveRatio.know}% - Hiểu ${cognitiveRatio.understand}% - Vận dụng ${cognitiveRatio.apply}%`,
-      schoolName: 'Trường THCS & THPT',
-      teacherName: 'Giáo viên bộ môn',
+      schoolName: 'Trường THPT Dương Quang Đông',
+      teacherName: 'Trần Thị Tuyết Nga',
     },
     matrix: {
       rows: [
