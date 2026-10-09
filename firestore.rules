@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper to validate valid ID strings
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128;
+    }
+
+    // Public workspaces: readable by any user, writable for publishing
+    match /workspaces/{workspaceId} {
+      allow read: if isValidId(workspaceId);
+      allow create, update: if isValidId(workspaceId)
+        && request.resource.data.publishedAt is string;
+      allow delete: if false;
+    }
+
+    // Shared exams: readable by any user, writable when creating or updating exams
+    match /exams/{examId} {
+      allow read: if isValidId(examId);
+      allow create, update: if isValidId(examId)
+        && request.resource.data.title is string;
+      allow delete: if false;
+    }
+
+    // Connection testing doc
+    match /test/{testId} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}

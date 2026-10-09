@@ -1,0 +1,8 @@
+{
+  "name": "Trợ Lý AI Giáo Viên - Soạn Giáo Án, Slide & Đề Kiểm Tra GDPT 2018",
+  "description": "Ứng dụng trợ lý AI toàn diện cho giáo viên THCS và THPT: Soạn kế hoạch bài dạy chuẩn Công văn 5512, thiết kế slide thuyết trình, tạo ma trận - bản đặc tả - đề kiểm tra chuẩn Công văn 7991/BGDĐT-GDTrH.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

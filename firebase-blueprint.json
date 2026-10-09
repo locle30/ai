@@ -1,0 +1,49 @@
+{
+  "entities": {
+    "public_workspace": {
+      "title": "PublicWorkspace",
+      "description": "Public synchronized workspace containing teacher profile, active documents, and repository items",
+      "type": "object",
+      "properties": {
+        "publishedAt": { "type": "string" },
+        "updatedAt": { "type": "string" },
+        "authorName": { "type": "string" },
+        "schoolName": { "type": "string" },
+        "title": { "type": "string" },
+        "version": { "type": "number" },
+        "settings": { "type": "object" },
+        "repository": { "type": "array" },
+        "activeLesson": { "type": "object" },
+        "activeSlides": { "type": "object" },
+        "activeExam": { "type": "object" }
+      },
+      "required": ["publishedAt"]
+    },
+    "shared_exam": {
+      "title": "SharedExam",
+      "description": "Individually shared exam document conforming to CV 7991",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "meta": { "type": "object" },
+        "matrix": { "type": "object" },
+        "specification": { "type": "object" },
+        "examPaper": { "type": "object" },
+        "answerKey": { "type": "object" }
+      },
+      "required": ["id", "title"]
+    }
+  },
+  "firestore": {
+    "/workspaces/{workspaceId}": {
+      "schema": { "$ref": "public_workspace" },
+      "description": "Global and individual shared teacher workspaces"
+    },
+    "/exams/{examId}": {
+      "schema": { "$ref": "shared_exam" },
+      "description": "Public exam documents accessible via direct link"
+    }
+  }
+}

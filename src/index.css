@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@layer components {
+  .btn-3d-blue {
+    background-color: #2563EB;
+    color: #ffffff;
+    box-shadow: 0 4px 0 0 #1d4ed8, 0 6px 12px -2px rgba(37, 99, 235, 0.35);
+    transition: all 0.12s ease-in-out;
+    cursor: pointer;
+  }
+  .btn-3d-blue:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 0 0 #1e40af, 0 8px 15px -2px rgba(37, 99, 235, 0.4);
+  }
+  .btn-3d-blue:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 0 #1e40af;
+  }
+
+  .btn-3d-teal {
+    background-color: #0F9D8A;
+    color: #ffffff;
+    box-shadow: 0 4px 0 0 #0d8373, 0 6px 12px -2px rgba(15, 157, 138, 0.35);
+    transition: all 0.12s ease-in-out;
+    cursor: pointer;
+  }
+  .btn-3d-teal:hover {
+    background-color: #0d8373;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 0 0 #0a6b5e, 0 8px 15px -2px rgba(15, 157, 138, 0.4);
+  }
+  .btn-3d-teal:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 0 #0a6b5e;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out forwards;
+}
